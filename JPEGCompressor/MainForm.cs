@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Windows.Media.Imaging;
@@ -58,22 +59,26 @@ namespace JPEGCompressor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            foreach (FileInfo element in jpegfiles) //decode jpeg files
-            {
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                FileStream stream = new FileStream(element.Name, FileMode.Open);
-                encoder.Save(stream);
-                progressBar1.Value = progressBar1.Value + step;
-            }
-            foreach (FileInfo element in jpgfiles) //decode jpg files
-            {
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                FileStream stream = new FileStream(element.FullName, FileMode.Open, FileAccess.Write);
-                encoder.Save(stream);
-                progressBar1.Value = progressBar1.Value + step;
-            }
-            progressBar1.Value = 100; //end progressbar
+            var thread = new Thread(() =>
+                {
+                    progressBar1.Value = 0;
+                    foreach (FileInfo element in jpegfiles) //decode jpeg files
+                    {
+                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                        FileStream stream = new FileStream(element.Name, FileMode.Open);
+                        encoder.Save(stream);
+                        progressBar1.Value = progressBar1.Value + step;
+                    }
+                    foreach (FileInfo element in jpgfiles) //decode jpg files
+                    {
+                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                        FileStream stream = new FileStream(@"" + element.FullName, FileMode.Open, FileAccess.Write);
+                        encoder.Save(stream);
+                        progressBar1.Value = progressBar1.Value + step;
+                    }
+                    progressBar1.Value = 100; //end progressbar
+                });
+            thread.Start();
         }
     }
 }
