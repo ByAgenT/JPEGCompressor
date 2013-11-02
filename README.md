@@ -1,0 +1,1 @@
+Simple JPEG\JPG Compressor
