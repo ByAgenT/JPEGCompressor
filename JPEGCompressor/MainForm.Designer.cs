@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.OpenFiles_Button = new System.Windows.Forms.Button();
+            this.Compress_Button = new System.Windows.Forms.Button();
+            this.ChooseFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.amount = new System.Windows.Forms.Label();
+            this.size = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
-            // button1
+            // OpenFiles_Button
             // 
-            this.button1.Location = new System.Drawing.Point(935, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 46);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Open";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.OpenFiles_Button.Location = new System.Drawing.Point(935, 39);
+            this.OpenFiles_Button.Name = "OpenFiles_Button";
+            this.OpenFiles_Button.Size = new System.Drawing.Size(97, 46);
+            this.OpenFiles_Button.TabIndex = 0;
+            this.OpenFiles_Button.Text = "Open";
+            this.OpenFiles_Button.UseVisualStyleBackColor = true;
+            this.OpenFiles_Button.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // Compress_Button
             // 
-            this.button2.Location = new System.Drawing.Point(935, 131);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 51);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Compress";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Compress_Button.Location = new System.Drawing.Point(935, 131);
+            this.Compress_Button.Name = "Compress_Button";
+            this.Compress_Button.Size = new System.Drawing.Size(97, 51);
+            this.Compress_Button.TabIndex = 1;
+            this.Compress_Button.Text = "Compress";
+            this.Compress_Button.UseVisualStyleBackColor = true;
+            this.Compress_Button.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -76,23 +76,23 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Размер";
             // 
-            // label3
+            // amount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(158, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "0";
+            this.amount.AutoSize = true;
+            this.amount.Location = new System.Drawing.Point(158, 68);
+            this.amount.Name = "amount";
+            this.amount.Size = new System.Drawing.Size(16, 17);
+            this.amount.TabIndex = 4;
+            this.amount.Text = "0";
             // 
-            // label4
+            // size
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 17);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "0";
+            this.size.AutoSize = true;
+            this.size.Location = new System.Drawing.Point(253, 68);
+            this.size.Name = "size";
+            this.size.Size = new System.Drawing.Size(16, 17);
+            this.size.TabIndex = 5;
+            this.size.Text = "0";
             // 
             // progressBar1
             // 
@@ -107,12 +107,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 514);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.size);
+            this.Controls.Add(this.amount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Compress_Button);
+            this.Controls.Add(this.OpenFiles_Button);
             this.Name = "MainForm";
             this.Text = "JPEG Compressor";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -123,13 +123,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button OpenFiles_Button;
+        private System.Windows.Forms.Button Compress_Button;
+        private System.Windows.Forms.FolderBrowserDialog ChooseFolder;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label amount;
+        private System.Windows.Forms.Label size;
         private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

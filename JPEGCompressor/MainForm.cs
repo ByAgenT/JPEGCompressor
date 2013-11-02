@@ -10,15 +10,15 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Windows.Media.Imaging;
+using JPEGCompressor;
 
 namespace JPEGCompressor
 {
     public partial class MainForm : Form
     {
 
-        FileInfo[] jpgfiles;
-        FileInfo[] jpegfiles;
-        int step;
+        FileInfo[] files;
+        String[] extensions = new[] { ".jpg", ".jpeg" };
         public MainForm()
         {
             InitializeComponent();
@@ -29,56 +29,47 @@ namespace JPEGCompressor
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
-            long size = 0; //size of files
-
-            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) //open FolderBrowserDialog
+            long totalFilesSize = 0;
+            if (ChooseFolder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                String path = folderBrowserDialog1.SelectedPath;
+                String path = ChooseFolder.SelectedPath;
                 DirectoryInfo dir = new DirectoryInfo(path);
-                jpgfiles = dir.GetFiles("*.jpg");
-                jpegfiles = dir.GetFiles("*.jpeg");
-                foreach (FileInfo f in jpegfiles) //compute size of .jpeg files
+                files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension)).ToArray();
+                foreach (FileInfo f in files) //compute size of files
                 {
-                    size = size + f.Length;
+                    totalFilesSize = totalFilesSize + f.Length;
                 }
-                foreach (FileInfo f in jpgfiles) //compute size of .jpg files
-                {
-                    size = size + f.Length;
-                }
-                int FileAmountJPG = jpgfiles.Length;
-                int FileAmountJPEG = jpegfiles.Length;
-                step = 100 / (FileAmountJPEG + FileAmountJPG);
-
-                label3.Text = String.Join(" ", FileAmountJPEG + FileAmountJPG);
-                label4.Text = String.Join(" ", size);
+                amount.Text = files.Length.ToString();
+                size.Text = totalFilesSize.ToString();
             }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var thread = new Thread(() =>
+            if (files != null)
+            {
+                var thread = new Thread(() =>
                 {
                     progressBar1.Value = 0;
-                    foreach (FileInfo element in jpegfiles) //decode jpeg files
-                    {
-                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                        FileStream stream = new FileStream(element.Name, FileMode.Open);
-                        encoder.Save(stream);
-                        progressBar1.Value = progressBar1.Value + step;
-                    }
-                    foreach (FileInfo element in jpgfiles) //decode jpg files
+                    int step = 100 / files.Length;
+                    foreach (FileInfo element in files) //decode files (not working)
                     {
                         JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                         FileStream stream = new FileStream(@"" + element.FullName, FileMode.Open, FileAccess.Write);
-                        encoder.Save(stream);
+                        encoder.Save(stream); //throw NotSupportedException
                         progressBar1.Value = progressBar1.Value + step;
                     }
                     progressBar1.Value = 100; //end progressbar
                 });
-            thread.Start();
+                thread.Start();
+            }
+            else MessageBox.Show("Файлов нету или не выбрана директория!");
         }
+
+
     }
 }
