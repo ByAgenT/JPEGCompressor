@@ -1,9 +1,0 @@
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\bin\Debug\JPEGCompressor.exe.config
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\bin\Debug\JPEGCompressor.exe
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\bin\Debug\JPEGCompressor.pdb
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.csprojResolveAssemblyReference.cache
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.Properties.Resources.resources
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.csproj.GenerateResource.Cache
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.exe
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.pdb
-F:\VisualStudioProjects\JPEGCompressor\JPEGCompressor\JPEGCompressor\obj\Debug\JPEGCompressor.MainForm.resources
