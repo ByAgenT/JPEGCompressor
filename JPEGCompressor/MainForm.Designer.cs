@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.amount = new System.Windows.Forms.Label();
             this.size = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.CompressProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // OpenFiles_Button
@@ -94,19 +94,19 @@
             this.size.TabIndex = 5;
             this.size.Text = "0";
             // 
-            // progressBar1
+            // CompressProgressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(66, 420);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(835, 23);
-            this.progressBar1.TabIndex = 7;
+            this.CompressProgressBar.Location = new System.Drawing.Point(66, 420);
+            this.CompressProgressBar.Name = "CompressProgressBar";
+            this.CompressProgressBar.Size = new System.Drawing.Size(835, 23);
+            this.CompressProgressBar.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 514);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.CompressProgressBar);
             this.Controls.Add(this.size);
             this.Controls.Add(this.amount);
             this.Controls.Add(this.label2);
@@ -130,7 +130,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label amount;
         private System.Windows.Forms.Label size;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar CompressProgressBar;
     }
 }
 

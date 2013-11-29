@@ -17,8 +17,12 @@ namespace JPEGCompressor
     public partial class MainForm : Form
     {
 
-        FileInfo[] files;
         String[] extensions = new[] { ".jpg", ".jpeg" };
+        IEnumerable<FileInfo> files;
+        IEnumerable<DirectoryInfo> dirs;
+        int filesAmount = 0;
+        String path;
+
         public MainForm()
         {
             InitializeComponent();
@@ -32,38 +36,23 @@ namespace JPEGCompressor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            long totalFilesSize = 0;
             if (ChooseFolder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                String path = ChooseFolder.SelectedPath;
-                DirectoryInfo dir = new DirectoryInfo(path);
-                files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension)).ToArray();
-                foreach (FileInfo f in files) //compute size of files
-                {
-                    totalFilesSize = totalFilesSize + f.Length;
-                }
-                amount.Text = files.Length.ToString();
-                size.Text = totalFilesSize.ToString();
+                path = ChooseFolder.SelectedPath;
+                size.Text = FileHelper.GetImagesSize(path).ToString();
+                filesAmount = FileHelper.GetImagesAmount(path);
+                amount.Text = filesAmount.ToString();
             }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (files != null)
+            if (filesAmount >= 1)
             {
                 var thread = new Thread(() =>
                 {
-                    progressBar1.Value = 0;
-                    int step = 100 / files.Length;
-                    foreach (FileInfo element in files) //decode files (not working)
-                    {
-                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                        FileStream stream = new FileStream(@"" + element.FullName, FileMode.Open, FileAccess.Write);
-                        encoder.Save(stream); //throw NotSupportedException
-                        progressBar1.Value = progressBar1.Value + step;
-                    }
-                    progressBar1.Value = 100; //end progressbar
+                    FileHelper.DecodeImages(path, CompressProgressBar);
                 });
                 thread.Start();
             }
