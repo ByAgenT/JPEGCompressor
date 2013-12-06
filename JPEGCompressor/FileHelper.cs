@@ -12,12 +12,10 @@ namespace JPEGCompressor
     class FileHelper
     {
         static String[] extensions = new[] { ".jpg", ".jpeg" };
-        private static long totalFilesSize = 0;
-        private static int fileAmount = 0;
         public static Int64 GetImagesSize(String path)
         {
             DirectoryInfo dir = new DirectoryInfo(path);
-
+            long totalFilesSize = 0;
             IEnumerable<FileInfo> files;
             IEnumerable<DirectoryInfo> dirs;
             files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension));
@@ -28,14 +26,14 @@ namespace JPEGCompressor
             }
             foreach (DirectoryInfo d in dirs)
             {
-                GetImagesSize(d.FullName);
+                totalFilesSize += GetImagesSize(d.FullName);
             }
             return totalFilesSize;
         }
 
         public static int GetImagesAmount(String path)
         {
-
+            int fileAmount = 0;
             DirectoryInfo dir = new DirectoryInfo(path);
             IEnumerable<FileInfo> files;
             IEnumerable<DirectoryInfo> dirs;
@@ -47,7 +45,7 @@ namespace JPEGCompressor
             }
             foreach (DirectoryInfo d in dirs)
             {
-                GetImagesAmount(d.FullName);
+                fileAmount += GetImagesAmount(d.FullName);
             }
             return fileAmount;
         }
