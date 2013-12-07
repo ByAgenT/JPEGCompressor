@@ -47,8 +47,10 @@ namespace JPEGCompressor
                         {
                             sizeLabel.Text = s.ToString(CultureInfo.InvariantCulture);
                         }), size);
-                    //filesAmount = FileHelper.GetImagesAmount(path);
-                    //amount.Text = filesAmount.ToString(CultureInfo.InvariantCulture);
+                    countLabel.Invoke(new Action<int>(s =>
+                        {
+                            countLabel.Text = s.ToString(CultureInfo.InvariantCulture);
+                        }), FileHelper.GetImagesCount(path));
                 });
                 thread.Start();
             }

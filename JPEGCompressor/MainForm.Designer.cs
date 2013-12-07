@@ -33,7 +33,7 @@
             this.ChooseFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.amount = new System.Windows.Forms.Label();
+            this.countLabel = new System.Windows.Forms.Label();
             this.sizeLabel = new System.Windows.Forms.Label();
             this.CompressProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
@@ -76,14 +76,14 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Размер";
             // 
-            // amount
+            // countLabel
             // 
-            this.amount.AutoSize = true;
-            this.amount.Location = new System.Drawing.Point(158, 68);
-            this.amount.Name = "amount";
-            this.amount.Size = new System.Drawing.Size(16, 17);
-            this.amount.TabIndex = 4;
-            this.amount.Text = "0";
+            this.countLabel.AutoSize = true;
+            this.countLabel.Location = new System.Drawing.Point(158, 68);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(16, 17);
+            this.countLabel.TabIndex = 4;
+            this.countLabel.Text = "0";
             // 
             // sizeLabel
             // 
@@ -108,7 +108,7 @@
             this.ClientSize = new System.Drawing.Size(1073, 514);
             this.Controls.Add(this.CompressProgressBar);
             this.Controls.Add(this.sizeLabel);
-            this.Controls.Add(this.amount);
+            this.Controls.Add(this.countLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Compress_Button);
@@ -128,7 +128,7 @@
         private System.Windows.Forms.FolderBrowserDialog ChooseFolder;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label amount;
+        private System.Windows.Forms.Label countLabel;
         private System.Windows.Forms.Label sizeLabel;
         private System.Windows.Forms.ProgressBar CompressProgressBar;
     }

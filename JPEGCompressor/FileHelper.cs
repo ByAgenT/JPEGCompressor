@@ -20,7 +20,7 @@ namespace JPEGCompressor
             long totalFilesSize = 0;
             IEnumerable<FileInfo> files;
             IEnumerable<DirectoryInfo> dirs;
-            files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension.ToLower()));
+            files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension));
             dirs = dir.EnumerateDirectories();
             foreach (FileInfo f in files)
             {
@@ -33,7 +33,7 @@ namespace JPEGCompressor
             return totalFilesSize;
         }
 
-        public static int GetImagesAmount(String path)
+        public static int GetImagesCount(String path)
         {
             Thread.Sleep(100);
             int fileAmount = 0;
@@ -48,7 +48,7 @@ namespace JPEGCompressor
             }
             foreach (DirectoryInfo d in dirs)
             {
-                fileAmount += GetImagesAmount(d.FullName);
+                fileAmount += GetImagesCount(d.FullName);
             }
             return fileAmount;
         }
@@ -61,7 +61,7 @@ namespace JPEGCompressor
             files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension));
             dirs = dir.EnumerateDirectories();
             progressBar.Value = 0;
-            int step = 100 / GetImagesAmount(path);
+            double step = 100 / GetImagesCount(path);
             foreach (FileInfo f in files)
             {
                 //JpegBitmapEncoder encoder = new JpegBitmapEncoder();
