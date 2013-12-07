@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,12 +39,19 @@ namespace JPEGCompressor
         {
             if (ChooseFolder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                path = ChooseFolder.SelectedPath;
-                size.Text = FileHelper.GetImagesSize(path).ToString();
-                filesAmount = FileHelper.GetImagesAmount(path);
-                amount.Text = filesAmount.ToString();
+                var thread = new Thread(() =>
+                {
+                    path = ChooseFolder.SelectedPath;
+                    long size = FileHelper.GetImagesSize(path);
+                    sizeLabel.Invoke(new Action<long>(s =>
+                        {
+                            sizeLabel.Text = s.ToString(CultureInfo.InvariantCulture);
+                        }), size);
+                    //filesAmount = FileHelper.GetImagesAmount(path);
+                    //amount.Text = filesAmount.ToString(CultureInfo.InvariantCulture);
+                });
+                thread.Start();
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
