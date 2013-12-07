@@ -34,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.amount = new System.Windows.Forms.Label();
-            this.size = new System.Windows.Forms.Label();
+            this.sizeLabel = new System.Windows.Forms.Label();
             this.CompressProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
@@ -85,14 +85,14 @@
             this.amount.TabIndex = 4;
             this.amount.Text = "0";
             // 
-            // size
+            // sizeLabel
             // 
-            this.size.AutoSize = true;
-            this.size.Location = new System.Drawing.Point(253, 68);
-            this.size.Name = "size";
-            this.size.Size = new System.Drawing.Size(16, 17);
-            this.size.TabIndex = 5;
-            this.size.Text = "0";
+            this.sizeLabel.AutoSize = true;
+            this.sizeLabel.Location = new System.Drawing.Point(253, 68);
+            this.sizeLabel.Name = "sizeLabel";
+            this.sizeLabel.Size = new System.Drawing.Size(16, 17);
+            this.sizeLabel.TabIndex = 5;
+            this.sizeLabel.Text = "0";
             // 
             // CompressProgressBar
             // 
@@ -107,7 +107,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 514);
             this.Controls.Add(this.CompressProgressBar);
-            this.Controls.Add(this.size);
+            this.Controls.Add(this.sizeLabel);
             this.Controls.Add(this.amount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -129,7 +129,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label amount;
-        private System.Windows.Forms.Label size;
+        private System.Windows.Forms.Label sizeLabel;
         private System.Windows.Forms.ProgressBar CompressProgressBar;
     }
 }
