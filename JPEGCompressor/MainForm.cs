@@ -19,10 +19,8 @@ namespace JPEGCompressor
     {
 
         String[] extensions = new[] { ".jpg", ".jpeg" };
-        IEnumerable<FileInfo> files;
-        IEnumerable<DirectoryInfo> dirs;
         int filesAmount = 0;
-        String path;
+        String _path;
 
         public MainForm()
         {
@@ -41,8 +39,9 @@ namespace JPEGCompressor
             {
                 var thread = new Thread(() =>
                 {
-                    path = ChooseFolder.SelectedPath;
-                    long size = FileHelper.GetImagesSize(path);
+                    _path = ChooseFolder.SelectedPath;
+                    long size = FileHelper.GetImagesSize(_path);
+                    filesAmount = FileHelper.GetImagesCount(_path);
                     sizeLabel.Invoke(new Action<long>(s =>
                         {
                             sizeLabel.Text = s.ToString(CultureInfo.InvariantCulture);
@@ -50,7 +49,7 @@ namespace JPEGCompressor
                     countLabel.Invoke(new Action<int>(s =>
                         {
                             countLabel.Text = s.ToString(CultureInfo.InvariantCulture);
-                        }), FileHelper.GetImagesCount(path));
+                        }), filesAmount);
                 });
                 thread.Start();
             }
@@ -62,7 +61,8 @@ namespace JPEGCompressor
             {
                 var thread = new Thread(() =>
                 {
-                    FileHelper.DecodeImages(path, CompressProgressBar);
+                    FileHelper.DecodeImages(_path, CompressProgressBar);
+                    CompressProgressBar.Invoke(new Action<int>(i => CompressProgressBar.Value = i), 100);
                 });
                 thread.Start();
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,6 +14,7 @@ namespace JPEGCompressor
     class FileHelper
     {
         static String[] extensions = new[] { ".jpg", ".jpeg" };
+        private static double step;
         public static Int64 GetImagesSize(String path)
         {
             Thread.Sleep(1000);
@@ -50,6 +52,7 @@ namespace JPEGCompressor
             {
                 fileAmount += GetImagesCount(d.FullName);
             }
+            step = 100 / Convert.ToDouble(fileAmount);
             return fileAmount;
         }
 
@@ -60,19 +63,21 @@ namespace JPEGCompressor
             IEnumerable<DirectoryInfo> dirs;
             files = dir.EnumerateFiles().Where(f => extensions.Contains(f.Extension));
             dirs = dir.EnumerateDirectories();
-            progressBar.Value = 0;
-            double step = 100 / GetImagesCount(path);
             foreach (FileInfo f in files)
             {
                 //JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 //FileStream stream = new FileStream(@"" + f.FullName, FileMode.Open, FileAccess.Write);
                 //encoder.Save(stream); //throw NotSupportedException
-                progressBar.Value += 1;
+                progressBar.Invoke(new Action<double>(i =>
+                {
+                    progressBar.Value += Convert.ToInt32(step);
+                }), step);
             }
             foreach (DirectoryInfo d in dirs)
             {
                 DecodeImages(d.FullName, progressBar);
             }
+            
         }
 
 
